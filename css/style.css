@@ -1,71 +1,88 @@
-nav {
-  font-family:Arial, Medium, sans-serif;
-  font-size: 16px; 
-  float: right;
-  display: inline-block;
-  margin-right: 20px;
-  padding: 10px;
-  margin-bottom: 10px;
+
+
+#logo {
+  width: 100%;
+  height: 400px;
+  padding: 0px;
+  border: 1px black;
+
 }
 
 h1{
   text-align: center;
-  font-size: 2em;
+  font-size: 36px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   margin: 2em;
+  margin-top: 0px;
+  margin-bottom: 30px;
+
 }
 
-img {
-  width: 30%;
-  border: 4px solid gray;
-  margin: 1em;
-  padding: 1em;
-  background-color: white;
+nav {
+  font-family:Arial, medium, sans-serif;
+  font-weight:bolder;
+  font-size: 20px; 
+  float: right;
+  display: inline-block;
+  padding: 10px;
+  margin-left: 1px;
+  margin-bottom: 20px;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: #74214b;
+  color: #e6bb8a;
 }
 
 #results {
-  margin-top: 49px;
-  width:140px;
+  margin-top: 65px;
+  width:180px;
   height:300px;
-  border: 2px solid black;
-  border-radius: 5px;
+  border: 2px solid #1d374d;
+  border-radius: 15px;
   float:left;
   font-family: Arial, medium, sans-serif;
+  font-size: 24px;
+  font-weight: bolder;
+  text-align:center;
 }
 
 #picture-container{
   min-height: 270px;
-  border: 2px solid black;
   border-radius: 5px;
   width: 80%;
-  padding:1em;
+  padding:0px;
   text-align: center;
   float: right;
-  margin-bottom: 20px;
+  margin-bottom:auto;
 }
 
 #picture1 {
   float: left;
-  width: 185px;
-}
+ }
 
 #picture3 {
   float: right;
-  width:185px;
-}
+ }
 
-#picture2 {
- width:185px;
+#picture1,#picture2,#picture3 {
+ width:255px;
+ border: 1px solid black;
+ border-radius: 5px;
 }
 
 #submit {
   width:55%;
-  height: 30px;
+  height: 50px;
   background-color:#797779;
+  font-size: 20px;
   border: 2px solid black;
   border-radius: 7px;
-  margin-left: 290px;
+  margin-left: 310px;
   margin-bottom: 10px;
 }
 
+body {
+  background-image:url("https://cdn.stocksnap.io/img-thumbs/960w/EFIV4XJXAL.jpg");
+
+}
