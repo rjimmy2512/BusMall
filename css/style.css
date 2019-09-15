@@ -1,3 +1,13 @@
+nav {
+  font-family:Arial, Medium, sans-serif;
+  font-size: 16px; 
+  float: right;
+  display: inline-block;
+  margin-right: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
 h1{
   text-align: center;
   font-size: 2em;
@@ -5,7 +15,8 @@ h1{
   font-weight: bold;
   margin: 2em;
 }
-img{
+
+img {
   width: 30%;
   border: 4px solid gray;
   margin: 1em;
@@ -13,12 +24,25 @@ img{
   background-color: white;
 }
 
+#results {
+  margin-top: 49px;
+  width:140px;
+  height:300px;
+  border: 2px solid black;
+  border-radius: 5px;
+  float:left;
+  font-family: Arial, medium, sans-serif;
+}
+
 #picture-container{
-  min-height: 335px;
+  min-height: 270px;
+  border: 2px solid black;
+  border-radius: 5px;
   width: 80%;
-  margin: auto;
-  padding: 1em;
+  padding:1em;
   text-align: center;
+  float: right;
+  margin-bottom: 20px;
 }
 
 #picture1 {
@@ -36,6 +60,12 @@ img{
 }
 
 #submit {
-  width:50%;
-  background-color:#787778
+  width:55%;
+  height: 30px;
+  background-color:#797779;
+  border: 2px solid black;
+  border-radius: 7px;
+  margin-left: 290px;
+  margin-bottom: 10px;
 }
+

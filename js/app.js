@@ -44,8 +44,10 @@ function imageGenerator(){
 
   var indexThree = random(allProducts.length);
 
-  // as long as indexThree is the same as indexTwo or index, keep getting a new indexThree
-  while(indexThree === indexTwo === index){
+  // function to get indexThree not to be as same as indexTwo or index (Keep getting three different images displayed)
+  if(indexThree === indexTwo){
+    indexThree = random(allProducts.length);
+  } else if (indexThree=== index){
     indexThree = random(allProducts.length);
   }
 
@@ -102,4 +104,3 @@ containerEl.addEventListener('click', handleClick);
 
 imageGenerator();
 
-// keep track of how many times an image was clicked on
