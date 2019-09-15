@@ -12,10 +12,8 @@ img{
   padding: 1em;
   background-color: white;
 }
+
 #picture-container{
-  background-color: lightgray;
-  border: 4px solid black;
-  border-radius: 10px;
   min-height: 335px;
   width: 80%;
   margin: auto;
@@ -23,7 +21,21 @@ img{
   text-align: center;
 }
 
-#picture-one {
+#picture1 {
   float: left;
+  width: 185px;
 }
 
+#picture3 {
+  float: right;
+  width:185px;
+}
+
+#picture2 {
+ width:185px;
+}
+
+#submit {
+  width:50%;
+  background-color:#787778
+}

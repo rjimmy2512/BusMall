@@ -6,15 +6,6 @@ var imageThreeEl = document.getElementById('picture3');
 
 var containerEl = document.getElementById('picture-container');
 
-// imageOneEl.src = 'img/boxCat.jpg';
-// imageOneEl.title = 'boxCat';
-// imageOneEl.alt = 'boxCat';
-
-// imageTwoEl.src = 'img/yogaCat.jpg';
-// imageTwoEl.title = 'yogaCat';
-// imageTwoEl.alt = 'yogaCat';
-
-// render two random images to the DOM from an array of images
 var allProducts = [];
 
 function Product(name){
@@ -82,7 +73,7 @@ new Product('cthulhu');
 new Product('dog-duck');
 new Product('dragon');
 new Product('pen');
-new Product('pet-sweet');
+new Product('pet-sweep');
 new Product('scissors');
 new Product('shark');
 new Product('sweep');
@@ -93,7 +84,7 @@ new Product('water-can');
 new Product('wine-glass');
 
 function handleClick(event){
-  var clickedCat = event.target.title;
+  var clickedProduct = event.target.title;
 
   for(var i = 0; i < allProducts.length; i++){
     // loop over my allProducts array
