@@ -2,7 +2,7 @@
 
 ## Author: James Ruhashyankiko
 
-sources used for help
+sources used for help: stocknap.io for header image
 who made the project
 project description
 how to run the project
