@@ -1,12 +1,13 @@
 'use strict';
 
+var votesRemaining = 25;
+var containerEl = document.getElementById('picture-container');
+var resultsEl = document.getElementById('results');
 var imageOneEl = document.getElementById('picture1');
 var imageTwoEl = document.getElementById('picture2');
 var imageThreeEl = document.getElementById('picture3');
-
-var containerEl = document.getElementById('picture-container');
-
 var allProducts = [];
+var recentIndex = [];
 
 function Product(name){
   this.alt = name;
@@ -18,15 +19,25 @@ function Product(name){
   allProducts.push(this);
 }
 
+//function to generate the 1st image (index)
+
 function imageGenerator(){
 
+  while(recentIndex.length > 6){
+  recentIndex.shift();
+  }
+
   var index = random(allProducts.length);
+  
+  while(recentIndex.includes(index)){
+    index = random(allProducts.length);
+  }
   
   imageOneEl.src = allProducts[index].src;
   imageOneEl.alt = allProducts[index].alt;
   imageOneEl.title = allProducts[index].title;
-
   allProducts[index].views++;
+  recentIndex.push(index);
 
   var indexTwo = random(allProducts.length);
 
@@ -38,9 +49,8 @@ function imageGenerator(){
   imageTwoEl.src = allProducts[indexTwo].src;
   imageTwoEl.alt = allProducts[indexTwo].alt;
   imageTwoEl.title = allProducts[indexTwo].title;
-
   allProducts[indexTwo].views++;
-
+  recentIndex.push(indexTwo);
 
   var indexThree = random(allProducts.length);
 
@@ -56,6 +66,7 @@ function imageGenerator(){
   imageThreeEl.title = allProducts[indexThree].title;
 
   allProducts[indexThree].views++;
+  recentIndex.push(indexThree);
 }
 
 // using code from MDN docs on Math.random()
@@ -85,22 +96,43 @@ new Product('usb');
 new Product('water-can');
 new Product('wine-glass');
 
-function handleClick(event){
-  var clickedProduct = event.target.title;
+
+function renderMostViewed(){
+  var mostViewed;
+  var clicks = 0;
 
   for(var i = 0; i < allProducts.length; i++){
     // loop over my allProducts array
     // find the product instance that has the same name as the product that was clicked on
     // increment the votes on that product
-    if(clickedProduct === allProducts[i].title){
-      allProducts[i].votes++;
+    if(allProducts[i].votes > clicks){
+      clicks = allProducts[i].votes;
+      mostViewed = allProducts[i];
     }
   }
 
-  imageGenerator();
+  //Create h2 and append it to the DOM for displaying results 
+  var h2El = document.createElement('h2');
+  h2El.textContent = `The most popular product is  ${mostViewed.title} with ${mostViewed.votes} votes`;
+  resultsEl.appendChild(h2El);
 }
 
+  function handleClick(event){
+  var clickedProduct = event.target.title;
+   for(var i = 0; i < allProducts.length; i++){
+      if(clickedProduct === allProducts[i].title){
+         allProducts[i].votes++;
+      }
+    }
+
+    imageGenerator();
+    votesRemaining--;
+
+    if(votesRemaining === 0){
+     containerEl.removeEventListener('click', handleClick);
+     renderMostViewed();
+    }
+  }
+
 containerEl.addEventListener('click', handleClick);
-
 imageGenerator();
-
