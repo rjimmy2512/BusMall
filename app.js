@@ -136,3 +136,60 @@ function renderMostViewed(){
 
 containerEl.addEventListener('click', handleClick);
 imageGenerator();
+
+//chart code
+
+function renderChart(){
+  var namesArray = [];
+  var votesArray = [];
+
+  for(var i = 0; i < allProducts.length; i++){
+    namesArray.push(allProducts[i].name);
+    votesArray.push(allProducts[i].votes);
+  }
+
+var ctx = canvasEl.getContext('myChart');
+
+ new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: namesArray, //product names
+        datasets: [{
+            label: '# of Votes',
+            data: votesArray, //number of votes for each product
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 124, 65, 0.2)',
+                'rgba(32, 124, 132, 0.2)',
+                'rgba(132, 24, 232, 0.2)',
+                'rgba(232, 224, 32, 0.2)',
+                'rgba(253, 99, 192, 0.2)',
+                'rgba(251, 192, 192, 0.2)',
+                'rgba(223, 199, 292, 0.2)',
+                'rgba(213, 109, 132, 0.2)',
+                'rgba(143, 93, 32, 0.2)',
+                'rgba(63, 89, 190, 0.2)',
+                'rgba(154, 192, 235, 0.2)',
+                'rgba(109, 172, 205, 0.2)',
+                'rgba(254, 102, 55, 0.2)',
+                'rgba(224, 222, 35, 0.2)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+}
