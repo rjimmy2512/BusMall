@@ -9,6 +9,7 @@ var imageThreeEl = document.getElementById('picture3');
 var allProducts = [];
 var recentIndex = [];
 
+
 function Product(name){
   this.alt = name;
   this.title = name;
