@@ -1,6 +1,7 @@
 'use strict';
 
 var votesRemaining = 25;
+var canvasEl = document.getElementById('my-canvas');
 var containerEl = document.getElementById('picture-container');
 var resultsEl = document.getElementById('results');
 var imageOneEl = document.getElementById('picture1');
@@ -39,13 +40,10 @@ function imageGenerator(){
   allProducts[index].views++;
   recentIndex.push(index);
 
+  var indexTwo = random(allProducts.length);
 
-//function to generate the 2nd image (indexTwo)
-    var indexTwo = random(allProducts.length);
-
-  // as long as indexTwo falls into the recentIndex array, keep getting a new indexTwo from remaining products array elements; 
-  
-  while(recentIndex.includes(indexTwo)){
+  // as long as indexTwo is the same as index, keep getting a new indexTwo
+  while(indexTwo === index){
     indexTwo = random(allProducts.length);
   }
 
@@ -55,12 +53,12 @@ function imageGenerator(){
   allProducts[indexTwo].views++;
   recentIndex.push(indexTwo);
 
-//function to generate the 2nd image (indexThree)
   var indexThree = random(allProducts.length);
 
- // as long as indexThree falls into the recentIndex array, keep getting a new indexThree from remaining products array elements;  
-
-  while(recentIndex.includes(indexThree)){
+  // function to get indexThree not to be as same as indexTwo or index (Keep getting three different images displayed)
+  if(indexThree === indexTwo){
+    indexThree = random(allProducts.length);
+  } else if (indexThree=== index){
     indexThree = random(allProducts.length);
   }
 
@@ -100,7 +98,6 @@ new Product('water-can');
 new Product('wine-glass');
 
 
-//function to sort out the most viewed product
 function renderMostViewed(){
   var mostViewed;
   var clicks = 0;
@@ -119,7 +116,6 @@ function renderMostViewed(){
   var h2El = document.createElement('h2');
   h2El.textContent = `The most popular product is  ${mostViewed.title} with ${mostViewed.votes} votes`;
   resultsEl.appendChild(h2El);
-
 }
 
   function handleClick(event){
@@ -142,3 +138,58 @@ function renderMostViewed(){
 containerEl.addEventListener('click', handleClick);
 imageGenerator();
 
+//chart code
+
+function renderChart(){
+  var namesArray = [];
+  var votesArray = [];
+
+  for(var i = 0; i < allProducts.length; i++){
+    namesArray.push(allProducts[i].names);
+    votesArray.push(allProducts[i].votes);
+  }
+
+  var ctx = document.getElementById('myChart');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: namesArray, //product names
+        datasets: [{
+            label: '# of Votes',
+            data: votesArray, //number of votes for each product
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 124, 65, 0.2)',
+                'rgba(32, 124, 132, 0.2)',
+                'rgba(132, 24, 232, 0.2)',
+                'rgba(232, 224, 32, 0.2)',
+                'rgba(253, 99, 192, 0.2)',
+                'rgba(251, 192, 192, 0.2)',
+                'rgba(223, 199, 292, 0.2)',
+                'rgba(213, 109, 132, 0.2)',
+                'rgba(143, 93, 32, 0.2)',
+                'rgba(63, 89, 190, 0.2)',
+                'rgba(154, 192, 235, 0.2)',
+                'rgba(109, 172, 205, 0.2)',
+                'rgba(254, 102, 55, 0.2)',
+                'rgba(224, 222, 35, 0.2)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+}
