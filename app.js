@@ -55,7 +55,9 @@ function imageGenerator(){
   allProducts[indexTwo].views++;
   recentIndex.push(indexTwo);
 
+
 //function to generate the 3rd image (indexThree)
+
   var indexThree = random(allProducts.length);
 
  // as long as indexThree falls into the recentIndex array, keep getting a new indexThree from remaining products array elements;  
