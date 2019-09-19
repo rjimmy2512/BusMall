@@ -141,7 +141,7 @@ function renderMostViewed(){
     if(votesRemaining === 0){
      containerEl.removeEventListener('click', handleClick);
      renderMostViewed();
-    
+     renderChart();
     }
   }
 
@@ -153,26 +153,26 @@ imageGenerator();
 
 var productNames = [];
 var productVotes = [];
+console.table(productVotes);
 
 function renderChart(){
-  if(votesRemaining === 0){
     for(var i = 0; i < allProducts.length; i++){
-      if (allProducts[i].votes > 0) {
-        productNames.push(allProducts[i].title);
-        productVotes.push(allProducts[i].votes);
-      }
+    if (allProducts[i].votes > 0) {
+      productNames.push(allProducts[i].alt);
+      productVotes.push(allProducts[i].votes);
     }
   }
 
-
 var ctx = document.getElementById('myChart').getContext('2d');
+
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
       //products with votes (which are in the productNames array);
         labels: productNames,
         datasets: [{
-            label: productVotes, //(products names);
+            label: 'Votes Chart',
+            data: productVotes, //(products names);
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -221,4 +221,3 @@ var myChart = new Chart(ctx, {
 });
 }
 
-renderChart();
