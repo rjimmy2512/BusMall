@@ -1,6 +1,8 @@
 'use strict';
 
 var votesRemaining = 25;
+
+var canvasEl = document.getElementById('myChart');
 var containerEl = document.getElementById('picture-container');
 var resultsEl = document.getElementById('results');
 var imageOneEl = document.getElementById('picture1');
@@ -11,6 +13,7 @@ var recentIndex = [];
 
 
 function Product(name){
+  this.name = name;
   this.alt = name;
   this.title = name;
   this.src = `img/${name}.jpg`;
@@ -139,8 +142,109 @@ function renderMostViewed(){
     if(votesRemaining === 0){
      containerEl.removeEventListener('click', handleClick);
      renderMostViewed();
+     renderChart();
     }
   }
 
 containerEl.addEventListener('click', handleClick);
+
 imageGenerator();
+
+//chart function
+
+var productNames = [];
+var productVotes = [];
+
+function renderChart(){
+    for(var i = 0; i < allProducts.length; i++){
+    if (allProducts[i].votes > 0) {
+      productNames.push(allProducts[i].alt);
+      productVotes.push(allProducts[i].votes);
+    }
+  }
+
+var ctx = document.getElementById('myChart').getContext('2d');
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      //products with votes (which are in the productNames array);
+        labels: productNames,
+        datasets: [{
+            label: 'Votes Chart',
+            data: productVotes, //(products names);
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',                 
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, o.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(215, 26, 76, 0.2)',
+                'rgba(85, 112, 102, 0.2)',
+                'rgba(253, 202, 55, 0.2)',
+                'rgba(295, 139, 164, 0.2)',
+                'rgba(45, 199, 192, 0.2)',
+                'rgba(154, 62, 230, 0.2)',
+                'rgba(270, 206, 86, 0.2)',
+                'rgba(175, 292, 219, 0.2)',
+                'rgba(83, 152, 55, 0.2)',
+                'rgba(25, 150, 164, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+           
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+}
+
+//function to create json and save on local storage
+
+///function to create json and save on laocal storage
+
+////////////ORIGINAL CATS/////////
+console.log('Products with corresponding votes are:', allProducts);
+
+/////////STRINGFY/////////////
+
+var stringifyedProducts = JSON.stringify(allProducts);
+console.log('stringified products', stringifyedProducts);
+
+
+///////////STORE IT IN LOCAL STORAGE//////////
+
+localStorage.setItem('products', stringifyedProducts);
+console.log('my local storage is: ', localStorage);
+
+/////////////GET ITEMS FROM LOCAL STORAGE/////////
+
+var localStorageProducts = localStorage.getItem('products');
+console.log('My products from local storage', localStorageProducts);
+
+////////////PARSE LOCAL STOARGE ITEMS//////////
+
+var parsedProducts = JSON.parse(localStorageProducts);
+console.log('My parsed products are:', parsedProducts);
