@@ -151,7 +151,6 @@ containerEl.addEventListener('click', handleClick);
 imageGenerator();
 
 
-
 var productNames = [];
 var productVotes = [];
 
@@ -163,6 +162,7 @@ function renderChart(){
     }
   }
 
+  
 //   /// FUNCTION TO CREATE JSON AND SAVE ON LOCAL STORAGE ///
 
 // ////////////ORIGINAL PRODUCTS/////////
@@ -200,7 +200,7 @@ console.log('My parsed products are:', parsedProducts);
 
 
 /// CHART FUNCTION ////
-
+  
 var ctx = document.getElementById('myChart').getContext('2d');
 
 var myChart = new Chart(ctx, {
@@ -258,5 +258,3 @@ var myChart = new Chart(ctx, {
     }
 });
 }
-
-
