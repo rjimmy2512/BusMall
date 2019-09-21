@@ -13,6 +13,7 @@ var recentIndex = [];
 
 
 function Product(name){
+  this.name = name;
   this.alt = name;
   this.title = name;
   this.src = `img/${name}.jpg`;
@@ -149,11 +150,9 @@ containerEl.addEventListener('click', handleClick);
 
 imageGenerator();
 
-//chart function
 
 var productNames = [];
 var productVotes = [];
-console.table(productVotes);
 
 function renderChart(){
     for(var i = 0; i < allProducts.length; i++){
@@ -163,6 +162,45 @@ function renderChart(){
     }
   }
 
+  
+//   /// FUNCTION TO CREATE JSON AND SAVE ON LOCAL STORAGE ///
+
+// ////////////ORIGINAL PRODUCTS/////////
+
+console.log('Original products are:', allProducts);
+console.log('Voted products are:', productNames);
+console.log('Corresponding votes are:', productVotes);
+
+// /////////STRINGFY/////////////
+
+var product = {
+  "Original products": allProducts,
+  "Voted products": productNames,
+  "Corresponding votes": productVotes,
+};
+
+var stringifyedProducts = JSON.stringify(product);
+// //console.log('stringified products', stringifyedProducts);
+
+
+// ///////////STORE IT IN LOCAL STORAGE//////////
+
+localStorage.setItem("ProductsForLocalStorage", stringifyedProducts);
+
+// /////////////GET ITEMS FROM LOCAL STORAGE/////////
+
+var localStorageProducts = localStorage.getItem("ProductsForLocalStorage");
+// //console.log('My products from local storage', localStorageProducts);
+
+// ////////////PARSE LOCAL STOARGE ITEMS//////////
+
+var parsedProducts = JSON.parse(localStorageProducts);
+console.log('My parsed products are:', parsedProducts);
+  
+
+
+/// CHART FUNCTION ////
+  
 var ctx = document.getElementById('myChart').getContext('2d');
 
 var myChart = new Chart(ctx, {
@@ -220,4 +258,3 @@ var myChart = new Chart(ctx, {
     }
 });
 }
-
